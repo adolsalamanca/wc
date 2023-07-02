@@ -41,11 +41,12 @@ fn count_words(){
     let lines = io::stdin().lines();
 
     for line in lines {
-        for s in line.unwrap().as_str().split(" ") {
-            if s != "" {
-                num_of_words += 1;
-            }
-        }
+        num_of_words += line.
+            unwrap().
+            as_str().
+            split(" ").
+            filter(|w| (!w.eq_ignore_ascii_case(""))).
+            count()
     }
 
     println!("{}", num_of_words);
