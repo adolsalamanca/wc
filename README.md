@@ -11,6 +11,9 @@ $ cargo run -- <arg_type>
 ## -l to count lines
 ## -w to count words
 ## -c to count characterss
+
+# Also accepts files as arguments like the original tool.
+## cargo run -- -l README.md
 ```
 
 ## Author
