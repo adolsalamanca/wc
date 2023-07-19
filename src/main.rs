@@ -44,7 +44,7 @@ fn main() {
 
     let mut all_lines = Vec::new();
 
-    if input != String::from(""){
+    if input != *""{
         if let Ok(lines) = read_lines(input) {
             // Consumes the iterator, returns an (Optional) String
             for line in lines {
@@ -91,7 +91,7 @@ fn count_lines(all_lines: Vec<String>) -> u32 {
         num_of_lines += 1;
     }
 
-    return num_of_lines;
+    num_of_lines
 }
 
 fn count_characters(all_lines: Vec<String>) -> u32 {
@@ -101,7 +101,7 @@ fn count_characters(all_lines: Vec<String>) -> u32 {
         num_of_chars += line.chars().count() as u32 + 1;
     }
 
-    return num_of_chars;
+    num_of_chars
 }
 
 fn count_words(all_lines: Vec<String>) -> u32{
@@ -109,10 +109,10 @@ fn count_words(all_lines: Vec<String>) -> u32{
 
     for line in all_lines {
         num_of_words += line.
-            split(" ").
-            filter(|w| (!w.eq_ignore_ascii_case(""))).
+            split(' ').
+            filter(|w| !w.eq_ignore_ascii_case("")).
             count() as u32
     }
 
-    return num_of_words;
+    num_of_words
 }
