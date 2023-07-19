@@ -38,7 +38,7 @@ mod tests {
 }
 
 fn main() {
-    let arg_type = std::env::args().nth(1).expect("no type was specified");
+    let arg_type = std::env::args().nth(1);
     let file_name = std::env::args().nth(2);
     let input = file_name.unwrap_or_else(|| String::from(""));
 
@@ -60,16 +60,23 @@ fn main() {
         }
     }
 
-    let mut result:u32 = 0;
+    let result:u32;
 
-    match arg_type.as_str() {
+    match arg_type.unwrap_or("".parse().unwrap()).as_str() {
         "-l" => result = count_lines(all_lines),
         "--lines" => result = count_lines(all_lines),
         "-c" => result = count_characters(all_lines),
         "--characters" => result = count_characters(all_lines),
         "-w" => result = count_words(all_lines),
         "--words" => result = count_words(all_lines),
-        _ => {}
+        _ => {
+            result = count_lines(all_lines.clone());
+            let result2 = count_words(all_lines.clone());
+            let result3 = count_characters(all_lines);
+
+            println!("\t{} \t{} \t{}", result, result2, result3);
+            return
+        }
     }
 
     println!("{}", result);
