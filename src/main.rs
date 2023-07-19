@@ -2,41 +2,6 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 
-#[cfg(test)]
-mod tests {
-    use crate::{count_characters, count_lines, count_words};
-
-    #[test]
-    fn count_lines_works_as_expected() {
-        let mut lines = Vec::new();
-        lines.push(String::from("first line"));
-        lines.push(String::from("second line"));
-        lines.push(String::from("third line"));
-
-        assert_eq!(3, count_lines(lines));
-    }
-
-    #[test]
-    fn count_words_works_as_expected() {
-        let mut lines = Vec::new();
-        lines.push(String::from("one word"));
-        lines.push(String::from("another word"));
-        lines.push(String::from("yet another word"));
-
-        assert_eq!(7, count_words(lines));
-    }
-
-    #[test]
-    fn count_characters_works_as_expected() {
-        let mut lines = Vec::new();
-        lines.push(String::from("first set of characters"));
-        lines.push(String::from("another group of characters"));
-        lines.push(String::from("final characters"));
-
-        assert_eq!(69, count_characters(lines));
-    }
-}
-
 fn main() {
     let arg_type = std::env::args().nth(1);
     let file_name = std::env::args().nth(2);
@@ -122,4 +87,39 @@ fn count_words(all_lines: Vec<String>) -> u32{
     }
 
     num_of_words
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::{count_characters, count_lines, count_words};
+
+    #[test]
+    fn count_lines_works_as_expected() {
+        let mut lines = Vec::new();
+        lines.push(String::from("first line"));
+        lines.push(String::from("second line"));
+        lines.push(String::from("third line"));
+
+        assert_eq!(3, count_lines(lines));
+    }
+
+    #[test]
+    fn count_words_works_as_expected() {
+        let mut lines = Vec::new();
+        lines.push(String::from("one word"));
+        lines.push(String::from("another word"));
+        lines.push(String::from("yet another word"));
+
+        assert_eq!(7, count_words(lines));
+    }
+
+    #[test]
+    fn count_characters_works_as_expected() {
+        let mut lines = Vec::new();
+        lines.push(String::from("first set of characters"));
+        lines.push(String::from("another group of characters"));
+        lines.push(String::from("final characters"));
+
+        assert_eq!(69, count_characters(lines));
+    }
 }
